@@ -8,11 +8,9 @@
     android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/app_lbl5"
                 android:layout_width="0dp"
@@ -22,7 +20,7 @@
                 android:layout_marginEnd="16dp"
                 android:width="110dp"
                 android:text="Description:"
-                android:textColor="@color/design_default_color_primary_dark"
+                android:textColor="#4787F6"
                 android:textColorHighlight="@android:color/holo_blue_dark"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +50,7 @@
                 android:width="110dp"
                 android:paddingHorizontal="0dp"
                 android:text="New Section:"
-                android:textColor="@color/design_default_color_primary_dark"
+                android:textColor="#4488EF"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +66,7 @@
                 android:width="110dp"
                 android:paddingHorizontal="0dp"
                 android:text="Current Section:"
-                android:textColor="@color/design_default_color_primary_dark"
+                android:textColor="#5198ED"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -95,7 +93,7 @@
                 android:layout_marginEnd="16dp"
                 android:width="110dp"
                 android:text="Roll No. :             "
-                android:textColor="@color/design_default_color_primary_dark"
+                android:textColor="#4490ED"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +108,7 @@
                 android:layout_marginEnd="16dp"
                 android:width="110dp"
                 android:text="Application No. :"
-                android:textColor="@color/design_default_color_primary_dark"
+                android:textColor="#549CF4"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -166,16 +164,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/app_lbl5" />
 
             <Button
-                android:id="@+id/Submit"
+                android:id="@+id/submit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="#56A4F6"
                 android:text="Submit"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Description" />
 
-            <TextView
+            <EditText
                 android:id="@+id/Date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -198,7 +200,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:text="Date:"
-                android:textColor="@color/design_default_color_primary_dark"
+                android:textColor="#5FA2F3"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.128"
@@ -213,10 +215,11 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="monospace"
+                android:paddingHorizontal="15px"
+                android:paddingVertical="10px"
                 android:text="Section Change Form"
-                android:textColor="@android:color/holo_red_light"
+                android:textColor="#F36B6B"
                 android:textSize="30sp"
-                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

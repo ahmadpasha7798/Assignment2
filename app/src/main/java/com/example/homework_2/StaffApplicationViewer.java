@@ -4,25 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class UpdateForm extends AppCompatActivity {
+public class StaffApplicationViewer extends AppCompatActivity {
 
     String[] strarr = {"A", "B", "C"};
-    String C_Selected = "A";
-    String N_Selected = "A";
-    private Log log;
 
     int chk(String a)
     {
-        log.d("tag", a);
         for(int i=0;i<3;i++)
         {
             if(a.equals(strarr[i])) {
@@ -32,10 +26,12 @@ public class UpdateForm extends AppCompatActivity {
         return 0;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_form);
+        setContentView(R.layout.activity_staff_application_viewer);
+
         final EditText S_date = findViewById(R.id.Date);
         final Intent intent = getIntent();
         int n = intent.getIntExtra("num", 0);
@@ -48,15 +44,11 @@ public class UpdateForm extends AppCompatActivity {
         C_sec.setAdapter(adapter);
         C_sec.setSelection(chk(intent.getStringExtra("C_sec")));
         C_sec.setEnabled(false);
-        C_Selected=C_sec.getSelectedItem().toString();
-
 
         final Spinner N_sec = findViewById(R.id.N_sec);
         N_sec.setAdapter(adapter);
         N_sec.setSelection(chk(intent.getStringExtra("N_sec")));
         N_sec.setEnabled(false);
-        N_Selected=N_sec.getSelectedItem().toString();
-
 
         final EditText Description = findViewById(R.id.Description);
         final EditText Roll_no = findViewById(R.id.Roll_no);
@@ -66,57 +58,43 @@ public class UpdateForm extends AppCompatActivity {
         Roll_no.setEnabled(false);
         final EditText comment=findViewById(R.id.comment_txt);
         comment.setText(intent.getStringExtra("comment"));
-        comment.setEnabled(false);
-
-        final EditText status=findViewById(R.id.status_txt);
-        status.setText(intent.getStringExtra("status"));
-        status.setEnabled(false);
-
-        Button submit = findViewById(R.id.submit);
-        submit.setOnClickListener(new View.OnClickListener() {
+        Button approvebtn = findViewById(R.id.submit);
+        approvebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (Roll_no.getText().toString().isEmpty()) {
-                    Toast.makeText(UpdateForm.this, "Enter Roll Number!", Toast.LENGTH_SHORT).show();
-                    Roll_no.setError("Enter Roll No.!");
-                } else if (C_Selected == N_Selected) {
-                    Toast.makeText(UpdateForm.this, "Please Select Valid Section!", Toast.LENGTH_SHORT).show();
-                    N_sec.setPrompt("Select Different Section!");
-                    C_sec.setPrompt("Select Different Section!");
-                } else if (Description.getText().toString().isEmpty()) {
-                    Toast.makeText(UpdateForm.this, "Enter Description!", Toast.LENGTH_SHORT).show();
-                    Description.setError("Enter Description Here!");
-                } else {
+
                     Intent act = new Intent();
                     act.putExtra("Roll_no", Roll_no.getText().toString());
                     act.putExtra("Date", S_date.getText().toString());
-                    act.putExtra("C_sec", C_Selected);
-                    act.putExtra("N_sec", N_Selected);
+                    act.putExtra("C_sec", C_sec.getSelectedItem().toString());
+                    act.putExtra("N_sec", N_sec.getSelectedItem().toString());
                     act.putExtra("Reason", Description.getText().toString());
                     act.putExtra("comment",comment.getText().toString());
-                    act.putExtra("status",status.getText().toString());
+                    act.putExtra("status","Approved");
                     setResult(RESULT_OK, act);
                     finish();
-                }
             }
         });
 
-        Button update=findViewById(R.id.Update);
-        update.setOnClickListener(new View.OnClickListener() {
+        Button Disapprove = findViewById(R.id.Disapprove);
+        Disapprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(status.getText().toString().equals("Approved")){
-                    Toast.makeText(UpdateForm.this,"Editing Not Possible",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    N_sec.setEnabled(true);
-                    Description.setEnabled(true);
-                }
+
+
+                Intent act = new Intent();
+                act.putExtra("Roll_no", Roll_no.getText().toString());
+                act.putExtra("Date", S_date.getText().toString());
+                act.putExtra("C_sec", C_sec.getSelectedItem().toString());
+                act.putExtra("N_sec", N_sec.getSelectedItem().toString());
+                act.putExtra("Reason", Description.getText().toString());
+                act.putExtra("comment",comment.getText().toString());
+                act.putExtra("status","Disapproved");
+                setResult(RESULT_OK, act);
+                finish();
             }
         });
-
     }
 
     @Override
@@ -127,5 +105,3 @@ public class UpdateForm extends AppCompatActivity {
         finish();
     }
 }
-
-
